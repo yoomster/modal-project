@@ -6,7 +6,7 @@
   <br />
   <br />
 
-  <div v-if="showModal">
+  <teleport to=".modals" v-if="showModal">
     <Modal theme="sale" @close="toggleModal">
       <template v-slot:links>
         <a href="#">sign up</a>
@@ -15,8 +15,15 @@
       <h1>Sign up with us</h1>
       <p>We only allow members to continue</p>
     </Modal>
-  </div>
+  </teleport>
   <button @click="toggleModal">open modal</button>
+
+  <div v-if="showModalTwo">
+    <Modal @close="toggleModalTwo">
+      <h1>second one in action!</h1>
+    </Modal>
+  </div>
+  <button @click="toggleModalTwo">open 2nd modal</button>
 </template>
 
 <script>
@@ -28,9 +35,8 @@ export default {
   data() {
     return {
       title: "My First Vue app!!!",
-      header: "Sign up first",
-      text: "We only allow members",
       showModal: false,
+      showModalTwo: false,
     };
   },
   methods: {
@@ -42,12 +48,16 @@ export default {
     toggleModal() {
       this.showModal = !this.showModal;
     },
+    toggleModalTwo() {
+      this.showModalTwo = !this.showModalTwo;
+    },
   },
 };
 </script>
 
 <style>
-#app {
+#app,
+.modals {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
