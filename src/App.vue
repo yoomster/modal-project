@@ -7,7 +7,14 @@
   <br />
 
   <div v-if="showModal">
-    <Modal :header="header" :text="text" theme="sale" @close="toggleModal" />
+    <Modal theme="sale" @close="toggleModal">
+      <template v-slot:links>
+        <a href="#">sign up</a>
+        <a href="#">login</a>
+      </template>
+      <h1>Sign up with us</h1>
+      <p>We only allow members to continue</p>
+    </Modal>
   </div>
   <button @click="toggleModal">open modal</button>
 </template>
